@@ -1,5 +1,6 @@
 package com.ceosilvajr.servletutil.dto;
 
+import com.ceosilvajr.servletutil.HttpResponseCodes;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,14 +90,26 @@ public class ErrorResponse {
 
     private final Error error;
 
-    public Builder(final int code, final String reason, final String message) {
+    public Builder(final HttpResponseCodes httpResponseCodes, final String message) {
       final ErrorResponse.Error error = new ErrorResponse.Error();
       final ErrorResponse.Errors errors = new ErrorResponse.Errors();
       final List<ErrorResponse.Errors> errorsList = new ArrayList<>();
       errorsList.add(errors);
-      errors.setReason(reason);
-      error.setCode(code);
+      error.setCode(httpResponseCodes.getCode());
       error.setMessage(message);
+      errors.setReason(message);
+      error.setErrors(errorsList);
+      this.error = error;
+    }
+
+    public Builder(final HttpResponseCodes httpResponseCodes, final String reason, final String message) {
+      final ErrorResponse.Error error = new ErrorResponse.Error();
+      final ErrorResponse.Errors errors = new ErrorResponse.Errors();
+      final List<ErrorResponse.Errors> errorsList = new ArrayList<>();
+      errorsList.add(errors);
+      error.setCode(httpResponseCodes.getCode());
+      error.setMessage(message);
+      errors.setReason(reason);
       error.setErrors(errorsList);
       this.error = error;
     }
