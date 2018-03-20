@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
+allprojects {
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+}
+
+apply plugin: 'java'
+
+ext {
+  javaxServlet = '3.1.0'
+  commonsLang3 = '3.6'
+  gson = '2.8.1'
+  testNg = '6.9.12'
+  mockito = '1.10.19'
+}
+
+dependencies {
+  compile group: 'javax.servlet', name: 'javax.servlet-api', version: "$rootProject.javaxServlet"
+  compile group: 'org.apache.commons', name: 'commons-lang3', version: "$rootProject.commonsLang3"
+  compile group: 'com.google.code.gson', name: 'gson', version: "$rootProject.gson"
+
+  testCompile group: 'org.testng', name: 'testng', version: "$rootProject.testNg"
+  testCompile group: 'org.mockito', name: 'mockito-core', version: "$rootProject.mockito"
+}
+
+def skip_quality_check = project.hasProperty('check') && check == 'false'
+println("skip_quality_check: " + skip_quality_check)
+if (!skip_quality_check) {
+  apply from: "$rootDir/check/quality.gradle"
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
