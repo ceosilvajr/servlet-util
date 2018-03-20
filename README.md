@@ -1,2 +1,2 @@
-# servlet-util
-Generic Servlet utility
+# servlet-utils
+General utilities for servlet
