@@ -94,4 +94,15 @@ public class ServletResponseUtilityTest {
     // then
     assertTrue(httpServletResponse.getHeaderNames().isEmpty());
   }
+
+  @Test
+  public void integration_default_() throws IOException {
+    // given
+    this.servletResponseUtility = ServletResponseUtility.instanceOf(httpServletResponse, new Object());
+    given(httpServletResponse.getWriter()).willReturn(printWriter);
+    // when
+    servletResponseUtility.toJson(HttpResponseCodes.RC_CONFLICT);
+    // then
+    assertTrue(httpServletResponse.getHeaderNames().isEmpty());
+  }
 }

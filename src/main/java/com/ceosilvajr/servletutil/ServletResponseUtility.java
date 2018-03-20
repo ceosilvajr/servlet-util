@@ -41,6 +41,10 @@ public final class ServletResponseUtility {
     toJson(HttpResponseCodes.RC_OK, headers);
   }
 
+  public void toJson(final HttpResponseCodes responseCode) throws IOException {
+    toJson(responseCode, new HashMap<>());
+  }
+
   public void toJson(final HttpResponseCodes responseCode, final Map<String, String> headers) throws IOException {
     if (responseCode == null) {
       throw new IllegalArgumentException("HttpResponseCodes should not be null.");
