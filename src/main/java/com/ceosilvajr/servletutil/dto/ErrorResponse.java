@@ -3,6 +3,7 @@ package com.ceosilvajr.servletutil.dto;
 import com.ceosilvajr.servletutil.HttpResponseCodes;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Created date 20/03/2018
@@ -62,6 +63,14 @@ public class ErrorResponse {
     public void setMessage(final String message) {
       this.message = message;
     }
+
+    @Override public String toString() {
+      return new ToStringBuilder(this)
+          .append("errors", errors)
+          .append("message", message)
+          .append("code", code)
+          .toString();
+    }
   }
 
   public static class Errors {
@@ -83,6 +92,13 @@ public class ErrorResponse {
 
     public void setMessage(final String message) {
       this.message = message;
+    }
+
+    @Override public String toString() {
+      return new ToStringBuilder(this)
+          .append("reason", reason)
+          .append("message", message)
+          .toString();
     }
   }
 
@@ -109,5 +125,11 @@ public class ErrorResponse {
     public ErrorResponse build() {
       return new ErrorResponse(this);
     }
+  }
+
+  @Override public String toString() {
+    return new ToStringBuilder(this)
+        .append("error", error)
+        .toString();
   }
 }

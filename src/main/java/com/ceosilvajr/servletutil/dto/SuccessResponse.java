@@ -1,6 +1,7 @@
 package com.ceosilvajr.servletutil.dto;
 
 import com.ceosilvajr.servletutil.HttpResponseCodes;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Created date 20/03/2018
@@ -47,6 +48,13 @@ public class SuccessResponse {
     public void setMessage(final String message) {
       this.message = message;
     }
+
+    @Override public String toString() {
+      return new ToStringBuilder(this)
+          .append("code", code)
+          .append("message", message)
+          .toString();
+    }
   }
 
   public static class Builder {
@@ -63,5 +71,11 @@ public class SuccessResponse {
     public SuccessResponse build() {
       return new SuccessResponse(this);
     }
+  }
+
+  @Override public String toString() {
+    return new ToStringBuilder(this)
+        .append("success", success)
+        .toString();
   }
 }
