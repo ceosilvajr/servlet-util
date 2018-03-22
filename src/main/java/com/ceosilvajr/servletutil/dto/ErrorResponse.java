@@ -90,28 +90,20 @@ public class ErrorResponse {
 
     private final Error error;
 
-    public Builder(final HttpResponseCodes httpResponseCodes, final String message) {
-      final ErrorResponse.Error error = new ErrorResponse.Error();
-      final ErrorResponse.Errors errors = new ErrorResponse.Errors();
-      final List<ErrorResponse.Errors> errorsList = new ArrayList<>();
-      errorsList.add(errors);
-      error.setCode(httpResponseCodes.getCode());
-      error.setMessage(message);
-      errors.setReason(message);
-      error.setErrors(errorsList);
-      this.error = error;
+    public Builder(final HttpResponseCodes httpResponseCodes, final String reason, final String message) {
+      this.error = getError(httpResponseCodes, reason, message);
     }
 
-    public Builder(final HttpResponseCodes httpResponseCodes, final String reason, final String message) {
-      final ErrorResponse.Error error = new ErrorResponse.Error();
-      final ErrorResponse.Errors errors = new ErrorResponse.Errors();
-      final List<ErrorResponse.Errors> errorsList = new ArrayList<>();
+    private Error getError(final HttpResponseCodes httpResponseCodes, final String reason, final String message) {
+      final Error error = new Error();
+      final Errors errors = new Errors();
+      final List<Errors> errorsList = new ArrayList<>();
       errorsList.add(errors);
       error.setCode(httpResponseCodes.getCode());
       error.setMessage(message);
       errors.setReason(reason);
       error.setErrors(errorsList);
-      this.error = error;
+      return error;
     }
 
     public ErrorResponse build() {
