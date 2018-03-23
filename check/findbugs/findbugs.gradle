@@ -4,7 +4,6 @@
 
 apply plugin: 'findbugs'
 
-
 findbugs {
   ignoreFailures = false
   effort = 'max'
@@ -16,7 +15,4 @@ tasks.withType(FindBugs) {
     xml.enabled = false
     html.enabled = true
   }
-  // Exclude generated radixx wsdl2java file
-  exclude '**/org/**'
-  exclude '**/com/**'
 }

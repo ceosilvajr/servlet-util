@@ -7,16 +7,10 @@ apply plugin: 'checkstyle'
 checkstyle {
   toolVersion = "6.19"
   ignoreFailures = false
-  showViolations = false
-  configFile = file("${rootProject.rootDir}/check/checkstyle/checkstyle.xml")
+  showViolations = true
+  configFile = new File(rootDir, 'check/checkstyle/checkstyle.xml')
 }
 
 plugins.withType(JavaPlugin) {
   checkstyle.sourceSets = [sourceSets.main]
-}
-
-// Exclude generated radixx wsdl2java file
-tasks.withType(Checkstyle) {
-  exclude '**/org/**'
-  exclude '**/com/**'
 }

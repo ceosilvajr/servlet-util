@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 GFMode All rights reserved
+ * Copyright (c) 2018. ceosilvajr All rights reserved
  */
 
 package com.ceosilvajr.servletutil.dto;
@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 /**
  * Created date 14/03/2018
  *
- * @author ceosilvajr@gmail.com
+ * @author ceosilvajr@gmail.com.
  **/
 public class MetaData {
 
@@ -23,7 +23,7 @@ public class MetaData {
     // Intended to be empty
   }
 
-  public MetaData(Builder builder) {
+  public MetaData(final Builder builder) {
     this.status = builder.status;
     this.message = builder.message;
     this.next = builder.next;
