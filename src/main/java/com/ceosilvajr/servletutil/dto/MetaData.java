@@ -14,6 +14,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  **/
 public class MetaData {
 
+  public static final int SINGLE_RESULT_COUNT = 1;
+
   private String status;
   private String message;
   private String next;
