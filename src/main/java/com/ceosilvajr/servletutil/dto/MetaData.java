@@ -6,6 +6,7 @@ package com.ceosilvajr.servletutil.dto;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * Created date 14/03/2018
@@ -22,7 +23,7 @@ public class MetaData {
   private int resultCount;
 
   public MetaData() {
-    // Intended to be empty
+    super();
   }
 
   public MetaData(final Builder builder) {
@@ -64,6 +65,10 @@ public class MetaData {
     this.resultCount = resultCount;
   }
 
+  @Override public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+  }
+
   public static class Builder {
 
     private String status;
@@ -101,14 +106,5 @@ public class MetaData {
     public MetaData build() {
       return new MetaData(this);
     }
-  }
-
-  @Override public String toString() {
-    return new ToStringBuilder(this)
-        .append("status", status)
-        .append("message", message)
-        .append("next", next)
-        .append("resultCount", resultCount)
-        .toString();
   }
 }

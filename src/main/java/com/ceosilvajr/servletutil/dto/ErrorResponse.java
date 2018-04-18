@@ -8,18 +8,19 @@ import com.ceosilvajr.servletutil.HttpResponseCodes;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * Created date 20/03/2018
  *
  * @author ceosilvajr@gmail.com
  **/
-public class ErrorResponse {
+public final class ErrorResponse {
 
   private Error error;
 
   public ErrorResponse() {
-    // Intended to be empty
+    super();
   }
 
   public ErrorResponse(final Builder builder) {
@@ -36,6 +37,10 @@ public class ErrorResponse {
 
   public String getReason() {
     return error.getErrors().get(0).getReason();
+  }
+
+  @Override public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
   }
 
   public static class Error {
@@ -67,14 +72,6 @@ public class ErrorResponse {
     public void setMessage(final String message) {
       this.message = message;
     }
-
-    @Override public String toString() {
-      return new ToStringBuilder(this)
-          .append("errors", errors)
-          .append("message", message)
-          .append("code", code)
-          .toString();
-    }
   }
 
   public static class Errors {
@@ -96,13 +93,6 @@ public class ErrorResponse {
 
     public void setMessage(final String message) {
       this.message = message;
-    }
-
-    @Override public String toString() {
-      return new ToStringBuilder(this)
-          .append("reason", reason)
-          .append("message", message)
-          .toString();
     }
   }
 
@@ -129,11 +119,5 @@ public class ErrorResponse {
     public ErrorResponse build() {
       return new ErrorResponse(this);
     }
-  }
-
-  @Override public String toString() {
-    return new ToStringBuilder(this)
-        .append("error", error)
-        .toString();
   }
 }
