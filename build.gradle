@@ -20,12 +20,12 @@ ext {
 }
 
 dependencies {
-  implementation group: 'javax.servlet', name: 'javax.servlet-api', version: "$rootProject.javaxServlet"
-  implementation group: 'org.apache.commons', name: 'commons-lang3', version: "$rootProject.commonsLang3"
-  implementation group: 'com.google.code.gson', name: 'gson', version: "$rootProject.gson"
+  compile group: 'javax.servlet', name: 'javax.servlet-api', version: "$rootProject.javaxServlet"
+  compile group: 'org.apache.commons', name: 'commons-lang3', version: "$rootProject.commonsLang3"
+  compile group: 'com.google.code.gson', name: 'gson', version: "$rootProject.gson"
 
-  testImplementation group: 'org.testng', name: 'testng', version: "$rootProject.testNg"
-  testImplementation group: 'org.mockito', name: 'mockito-core', version: "$rootProject.mockito"
+  testCompileOnly group: 'org.testng', name: 'testng', version: "$rootProject.testNg"
+  testCompileOnly group: 'org.mockito', name: 'mockito-core', version: "$rootProject.mockito"
 }
 
 def skip_quality_check = project.hasProperty('check') && check == 'false'
