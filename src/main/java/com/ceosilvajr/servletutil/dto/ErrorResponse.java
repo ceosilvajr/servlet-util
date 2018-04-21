@@ -1,20 +1,26 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
 package com.ceosilvajr.servletutil.dto;
 
 import com.ceosilvajr.servletutil.HttpResponseCodes;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * Created date 20/03/2018
  *
  * @author ceosilvajr@gmail.com
  **/
-public class ErrorResponse {
+public final class ErrorResponse {
 
   private Error error;
 
   public ErrorResponse() {
-    // Intended to be empty
+    super();
   }
 
   public ErrorResponse(final Builder builder) {
@@ -31,6 +37,10 @@ public class ErrorResponse {
 
   public String getReason() {
     return error.getErrors().get(0).getReason();
+  }
+
+  @Override public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
   }
 
   public static class Error {
@@ -90,28 +100,20 @@ public class ErrorResponse {
 
     private final Error error;
 
-    public Builder(final HttpResponseCodes httpResponseCodes, final String message) {
-      final ErrorResponse.Error error = new ErrorResponse.Error();
-      final ErrorResponse.Errors errors = new ErrorResponse.Errors();
-      final List<ErrorResponse.Errors> errorsList = new ArrayList<>();
-      errorsList.add(errors);
-      error.setCode(httpResponseCodes.getCode());
-      error.setMessage(message);
-      errors.setReason(message);
-      error.setErrors(errorsList);
-      this.error = error;
+    public Builder(final HttpResponseCodes httpResponseCodes, final String reason, final String message) {
+      this.error = getError(httpResponseCodes, reason, message);
     }
 
-    public Builder(final HttpResponseCodes httpResponseCodes, final String reason, final String message) {
-      final ErrorResponse.Error error = new ErrorResponse.Error();
-      final ErrorResponse.Errors errors = new ErrorResponse.Errors();
-      final List<ErrorResponse.Errors> errorsList = new ArrayList<>();
+    private Error getError(final HttpResponseCodes httpResponseCodes, final String reason, final String message) {
+      final Error error = new Error();
+      final Errors errors = new Errors();
+      final List<Errors> errorsList = new ArrayList<>();
       errorsList.add(errors);
       error.setCode(httpResponseCodes.getCode());
       error.setMessage(message);
       errors.setReason(reason);
       error.setErrors(errorsList);
-      this.error = error;
+      return error;
     }
 
     public ErrorResponse build() {

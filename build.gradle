@@ -24,8 +24,8 @@ dependencies {
   compile group: 'org.apache.commons', name: 'commons-lang3', version: "$rootProject.commonsLang3"
   compile group: 'com.google.code.gson', name: 'gson', version: "$rootProject.gson"
 
-  testCompile group: 'org.testng', name: 'testng', version: "$rootProject.testNg"
-  testCompile group: 'org.mockito', name: 'mockito-core', version: "$rootProject.mockito"
+  testCompileOnly group: 'org.testng', name: 'testng', version: "$rootProject.testNg"
+  testCompileOnly group: 'org.mockito', name: 'mockito-core', version: "$rootProject.mockito"
 }
 
 def skip_quality_check = project.hasProperty('check') && check == 'false'

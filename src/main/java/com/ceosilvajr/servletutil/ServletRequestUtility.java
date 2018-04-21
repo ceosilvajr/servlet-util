@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
 package com.ceosilvajr.servletutil;
 
 import com.google.gson.Gson;

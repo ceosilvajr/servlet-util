@@ -1,22 +1,32 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
 package com.ceosilvajr.servletutil.dto;
 
 import com.ceosilvajr.servletutil.HttpResponseCodes;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * Created date 20/03/2018
  *
  * @author ceosilvajr@gmail.com
  **/
-public class SuccessResponse {
+public final class SuccessResponse {
 
   private Success success;
 
   public SuccessResponse() {
-    // Intended to be empty
+    super();
   }
 
   public SuccessResponse(final Builder builder) {
     this.success = builder.success;
+  }
+
+  public static SuccessResponse defaultOk() {
+    return new SuccessResponse(new Builder(HttpResponseCodes.RC_OK, "Success"));
   }
 
   public Success getSuccess() {
@@ -25,6 +35,10 @@ public class SuccessResponse {
 
   public String getMessage() {
     return success.getMessage();
+  }
+
+  @Override public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
   }
 
   public static class Success {

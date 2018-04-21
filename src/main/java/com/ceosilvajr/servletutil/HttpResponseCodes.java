@@ -1,7 +1,11 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
 package com.ceosilvajr.servletutil;
 
 /**
- * Created date 19/03/2018
+ * Created date 19/03/2018.
  *
  * @author ceosilvajr@gmail.com
  **/
